@@ -2471,6 +2471,7 @@ func shuffleExtensions(chs ClientHelloSpec) (ClientHelloSpec, error) {
 	// Find indexes of GREASE and padding extensions
 	var greaseIdx []int
 	var paddingIdx []int
+	var presharedIdx []int
 	var otherExtensions []TLSExtension
 
 	for i, ext := range chs.Extensions {
@@ -2479,6 +2480,8 @@ func shuffleExtensions(chs ClientHelloSpec) (ClientHelloSpec, error) {
 			greaseIdx = append(greaseIdx, i)
 		case *UtlsPaddingExtension:
 			paddingIdx = append(paddingIdx, i)
+		case *PreSharedKeyExtension:
+			presharedIdx = append(presharedIdx, i)
 		default:
 			otherExtensions = append(otherExtensions, ext)
 		}
@@ -2505,6 +2508,13 @@ SHUF_EXTENSIONS:
 				chs.Extensions[i] = &UtlsPaddingExtension{
 					GetPaddingLen: BoringPaddingStyle,
 				}
+				continue SHUF_EXTENSIONS
+			}
+		}
+
+		for _, idx := range presharedIdx {
+			if i == idx {
+				chs.Extensions[i] = &PreSharedKeyExtension{}
 				break SHUF_EXTENSIONS
 			}
 		}
