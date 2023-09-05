@@ -2515,7 +2515,7 @@ SHUF_EXTENSIONS:
 		for _, idx := range presharedIdx {
 			if i == idx {
 				chs.Extensions[i] = &PreSharedKeyExtension{}
-				break SHUF_EXTENSIONS
+				continue SHUF_EXTENSIONS
 			}
 		}
 
