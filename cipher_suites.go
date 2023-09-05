@@ -17,7 +17,7 @@ import (
 	"hash"
 	"runtime"
 
-	"github.com/bogdanfinn/utls/cpu"
+	"github.com/sergey-scat/utls/cpu"
 	"golang.org/x/crypto/chacha20poly1305"
 )
 

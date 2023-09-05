@@ -10,8 +10,8 @@ import (
 	"strings"
 	"testing"
 
-	. "github.com/bogdanfinn/utls/cpu"
-	"github.com/bogdanfinn/utls/testenv"
+	. "github.com/sergey-scat/utls/cpu"
+	"github.com/sergey-scat/utls/testenv"
 
 )
 
