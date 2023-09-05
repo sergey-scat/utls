@@ -2524,7 +2524,7 @@ SHUF_EXTENSIONS:
 		otherExtIdx++
 	}
 	if otherExtIdx != len(otherExtensions) {
-		return ClientHelloSpec{}, errors.New("shuffleExtensions: otherExtIdx != len(otherExtensions)")
+		return ClientHelloSpec{}, errors.New(fmt.Sprintf("shuffleExtensions: otherExtIdx [%d] != len(otherExtensions) [%d]", otherExtIdx, len(otherExtensions)))
 	}
 	return chs, nil
 }
